@@ -1,0 +1,23 @@
+.hamburger {
+    display: none; /* Hide by default */
+  }
+  
+  @media (max-width: 600px) {
+    .hamburger {
+      display: block; /* Show hamburger on small screens */
+    }
+  
+    .menu-items {
+      display: none; /* Hide regular menu items on small screens */
+    }
+  }
+  
+  @media (min-width: 601px) {
+    .hamburger {
+      display: none !important; /* Hide hamburger on larger screens */
+    }
+  
+    .menu-items {
+      display: flex;
+    }
+}

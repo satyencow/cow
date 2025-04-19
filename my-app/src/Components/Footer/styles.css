@@ -1,0 +1,9 @@
+footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s ease-in-out;
+    position: relative; /* Ensures it stays within normal flow */
+}

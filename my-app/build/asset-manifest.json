@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.79ed445e.css",
+    "main.js": "/static/js/main.6435200f.js",
+    "static/js/488.9c92ff38.chunk.js": "/static/js/488.9c92ff38.chunk.js",
+    "static/media/COW-1.mp4": "/static/media/COW-1.bcc1f0f168edb6fdd598.mp4",
+    "static/media/cow-Vertical.mp4": "/static/media/cow-Vertical.101b1b03f5c5d5254cf0.mp4",
+    "static/media/Aboutus1.jpeg": "/static/media/Aboutus1.ae6542d599d8195ab4c1.jpeg",
+    "static/media/Aboutus.jpeg": "/static/media/Aboutus.a8e5ac8f3b84e3e8e285.jpeg",
+    "static/media/Services.jpeg": "/static/media/Services.17fa4c2aa4dbdb17920c.jpeg",
+    "static/media/Aboutus2.jpeg": "/static/media/Aboutus2.8e06dd9aea8797663798.jpeg",
+    "static/media/COW Design-05.jpg": "/static/media/COW Design-05.4b29c09f8245a8928d47.jpg",
+    "index.html": "/index.html",
+    "main.79ed445e.css.map": "/static/css/main.79ed445e.css.map",
+    "main.6435200f.js.map": "/static/js/main.6435200f.js.map",
+    "488.9c92ff38.chunk.js.map": "/static/js/488.9c92ff38.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.79ed445e.css",
+    "static/js/main.6435200f.js"
+  ]
+}
