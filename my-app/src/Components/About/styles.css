@@ -1,0 +1,271 @@
+ .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+  font-family: "Helvetica Neue LT Com", sans-serif;
+  margin-bottom: 0.1rem;
+}
+.h1{
+  font-family: "Helvetica Neue LT Com", sans-serif;
+  margin-bottom: auto;
+}
+.about-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.about-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers section without distortion */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.overlay {
+  padding: 20px;
+  text-align: left;
+  color: white;
+  border-radius: 10px;
+  font-family: "Helvetica Neue LT Com", sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  position: relative;
+  z-index: 1;
+
+}
+
+/* Remove the ::before pseudo-element since we're using <picture> now */
+.about-section::before {
+  display: none;
+}
+
+/* Custom styling for the third section */
+.about-section-custom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5%;
+  text-align: left;
+}
+
+.custom-overlay {
+  padding: 20px;
+  color: white;
+  max-width: 50%;
+
+}
+
+.custom-overlay h1 {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: "Helvetica Neue LT Com", sans-serif;
+  margin-bottom: auto;
+}
+
+.custom-overlay h2,
+.custom-overlay h3 {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Helvetica Neue LT Com", sans-serif;
+}
+
+.custom-overlay p {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: "Helvetica Neue LT Com", sans-serif;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1023px) {
+  .overlay,
+  .custom-overlay {
+    max-width: 80%;
+    padding: 1.5rem;
+  }
+
+  .custom-overlay h1 {
+    font-size: 2rem;
+    margin-bottom: auto;
+  }
+
+  .custom-overlay h2,
+  .custom-overlay h3 {
+    font-size: 1.5rem;
+  }
+
+  .custom-overlay p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 4rem 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-section p {
+    font-size: 1.5rem;
+  }
+
+  .about-section-custom {
+    justify-content: center;
+    padding: 2rem 1rem;
+    height: auto;
+  }
+
+  .overlay,
+  .custom-overlay {
+    max-width: 90%;
+    padding: 1rem;
+  }
+
+  .custom-overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .custom-overlay h2,
+  .custom-overlay h3 {
+    font-size: 1.4rem;
+  }
+
+  .custom-overlay p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay,
+  .custom-overlay {
+    max-width: 100%;
+    padding: 0.8rem;
+  }
+  .custom-overlay{
+    background-color: rgba(245, 245, 245, 0.4);
+  }
+
+  .custom-overlay h1 {
+    font-size: 1.5rem;
+  }
+
+  .custom-overlay h2,
+  .custom-overlay h3 {
+    font-size: 1.2rem;
+  }
+
+  .custom-overlay p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Dialog Styles (Unchanged) */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-box {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1000px;
+  width: 90%;
+  height: 60%;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000;
+}
+
+.brand-image {
+  max-width: 100%;
+  height: 380px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .dialog-box {
+    padding: 15px;
+    width: 95%;
+    height: 80%;
+  }
+
+  .close-button {
+    top: 5px;
+    right: 5px;
+    font-size: 18px;
+  }
+}
+
+.custom-overlay a,
+.custom-overlay span {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-150px);
+  
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.animate-on-scroll:nth-child(2) {
+  transition-delay: 0.3s;
+}
+
+.animate-on-scroll:nth-child(3) {
+  transition-delay: 0.6s;
+}

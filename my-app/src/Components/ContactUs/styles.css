@@ -1,0 +1,182 @@
+/* General Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  font-family: "Helvetica Neue LT Com", sans-serif;
+}
+
+/* Contact Container */
+.contact-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 120px 20px 60px; /* Leaves space for header */
+  box-sizing: border-box;
+  background-color: black;
+
+}
+
+/* Heading */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+  max-width: 800px; /* Aligns with form */
+  margin-bottom: 30px;
+  animation: slideIn 0.6s ease-out forwards;
+  color: white;
+
+}
+
+/* Contact Form */
+.contact-form {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.8s ease-out forwards;
+  margin: 0 auto; /* Centering the form */
+  gap:5px
+}
+
+/* Input Groups */
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 20px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  
+}
+input::placeholder,
+textarea::placeholder {
+  color: white;
+ 
+}
+
+/* Dropdown Select */
+select {
+  appearance: none;
+  background-color: black;
+  border-bottom: 2px solid white;
+}
+
+/* Message Box */
+textarea {
+  height: 120px;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 18px;
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+/* Contact Info */
+.contact-info {
+  width: 100%;
+  max-width: 800px; /* Aligns with form */
+  margin-top: 30px; /* More spacing from the form */
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Contact Info Text */
+h2 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  animation: slideIn 0.6s ease-out forwards;
+  color: white;
+
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 🔹 Responsive Design */
+
+/* Tablets & Smaller Screens */
+@media (max-width: 768px) {
+  .contact-container {
+    padding-top: 140px; /* More space for header */
+    align-items: center;
+  }
+
+  .contact-form {
+    width: 80%;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  input, textarea, select {
+    font-size: 18px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .contact-info {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+}
+
+/* Small Screens (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .contact-container {
+    padding: 160px 20px 60px; /* Even more space for header */
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .contact-form {
+    width: 80%;
+  }
+
+  .contact-info {
+    text-align: center;
+    display: block;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
