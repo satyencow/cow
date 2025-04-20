@@ -1,0 +1,1 @@
+{"functions":[{"bundler":"nft","buildData":{"runtimeAPIVersion":1},"mainFile":"C:\\Projects\\cow\\my-app\\netlify\\functions\\send-email.js","name":"send-email","priority":10,"path":"C:\\Projects\\cow\\my-app\\netlify\\functions\\send-email.zip","runtime":"js"}],"system":{"arch":"x64","platform":"win32"},"timestamp":1745147826123,"version":1}
