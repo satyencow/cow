@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import './styles.css'; // Import your styles
-import emailjs from '@emailjs/browser';
 
 const ContactUs = () => {
   const form = useRef()
@@ -17,29 +16,37 @@ const ContactUs = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-
-    emailjs
-      .sendForm('service_v3ninov', 'contact_form', form.current, {
-        publicKey: 'jIY0ZIyGcbrYcq-Mi',
-      })
-      .then(
-        () => {
-          alert('Email sent successfully!');
-          setFormData({
-            user_name: "",
-            user_email: "",
-            phone: "",
-            topic: "Topic",
-            message: "",
-          });
+  
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
         },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert('Email sent successfully!');
+        setFormData({
+          user_name: "",
+          user_email: "",
+          phone: "",
+          topic: "Topic",
+          message: "",
+        });
+      } else {
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Error sending email. Please try again later.');
+    }
   };
 
   return (
