@@ -1,5 +1,3 @@
-const { fetch } = require('undici');  // New import
-
 export async function handler(event, context) {
   if (event.httpMethod === "POST") {
     try {
