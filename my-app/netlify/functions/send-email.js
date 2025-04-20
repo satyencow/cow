@@ -1,4 +1,4 @@
-import fetch from "node-fetch"; // Install node-fetch if using
+const { fetch } = require('undici');  // New import
 
 export async function handler(event, context) {
   if (event.httpMethod === "POST") {
