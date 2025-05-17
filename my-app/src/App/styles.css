@@ -3,3 +3,10 @@ body {
     font-family: "elvetica Neue LT Com" sans-serif;
     
   }
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
