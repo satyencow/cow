@@ -1,0 +1,2 @@
+.video-container{display:flex;height:100vh;justify-content:center;overflow:hidden;position:relative;width:100%}video{height:100vh;left:50%;object-fit:cover;position:absolute;top:50%;transform:translate(-50%,-50%);width:100vw}.video-mobile{display:none}.video-desktop{display:block}@media (max-width:768px){.video-desktop{display:none}.video-mobile{display:block}}
+/*# sourceMappingURL=274.2193c8cc.chunk.css.map*/

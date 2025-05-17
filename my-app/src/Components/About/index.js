@@ -63,8 +63,8 @@ function About() {
         </picture>
         <div className="overlay animate-on-scroll">
           <p>
-            Boosting your business is our business.<br /> Because nothing the cow produces ever go to waste.
-            <br />Even the waste is precious manure.
+            Boosting your business is our business.<br /> Because nothing the cow produces ever goes to waste.
+            <br />Even its waste is precious manure.
           </p>
         </div>
       </section>
