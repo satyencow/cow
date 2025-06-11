@@ -117,7 +117,7 @@ export default function BrandsCarouselDialog({ open, onClose }) {
           position: 'relative',
           // Use a semi-transparent panel behind the image so the logo remains legible
           // You can adjust this to more opaque if logos need more contrast.
-          bgcolor: 'rgba(255,255,255,0.8)', 
+          bgcolor: 'rgba(255,255,255,255)', 
           borderRadius: 2,
           p: 2,
           display: 'flex',
