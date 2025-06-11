@@ -1,6 +1,6 @@
 import React from 'react';
-import desktopVideo from '../../videos/COW-1.mp4';
-import mobileVideo from '../../videos/cow-Vertical.mp4';
+import desktopVideo from '../../videos/COW Desktop video.mp4';
+import mobileVideo from '../../videos/COW Mobile video.mp4';
 import './styles.css';
 
 const Home = () => {
