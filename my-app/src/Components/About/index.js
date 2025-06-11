@@ -3,9 +3,10 @@ import "./styles.css";
 import desktopAbout1 from "../../Images/Aboutus1.jpeg"; // Desktop version
 import desktopAbout2 from "../../Images/Aboutus2.jpeg";
 import desktopAbout3 from "../../Images/Aboutus.jpeg";
-import brandImage from "../../Images/brands/COW Design-05.jpg";
 import { Dialog, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import BrandsCarouselDialog from '../BrandsCarouselDialog'; // adjust path
+ 
 function About() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [isMediaDialogOpen, setMediaDialog] = useState(false);
@@ -115,10 +116,9 @@ function About() {
       </section>
 
       {/* Dialog Box for Brands */}
-      <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth maxWidth="lg" classes={{ paper: "dialog" }} icon={true}>
-      <img src={brandImage} alt="Brand" className="brand-image" />
+    <BrandsCarouselDialog onClose={closeDialog} open={isDialogOpen} />
+ 
       
-        </Dialog>
       
     {/* Dialog Box for Media */}
     <Dialog open={isMediaDialogOpen} onClose={closeMediaDialog} fullWidth maxWidth="lg" classes={{ paper: "media-dialog" }}>
