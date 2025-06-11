@@ -89,7 +89,15 @@ export default function BrandsCarouselDialog({ open, onClose }) {
     console.warn('Failed to load logo:', logos[index]);
     // You could skip to next automatically, or show placeholder...
   };
-
+ const handlePaperClick = (event) => {
+    // event.target is the element clicked.
+    // event.currentTarget is the Paper element.
+    // If user clicked exactly on the Paper (not a child), target===currentTarget.
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+    // Otherwise (click inside inner Box), do nothing here.
+  };
   return (
     <Dialog
       open={open}
@@ -102,7 +110,8 @@ export default function BrandsCarouselDialog({ open, onClose }) {
         sx: {
           backgroundColor: 'transparent', // transparent so page shows behind
           boxShadow: 'none',              // remove default white shadow
-        }
+        },
+          onClick: handlePaperClick,
       }}
       BackdropProps={{
         sx: {
