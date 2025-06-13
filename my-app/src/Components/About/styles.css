@@ -153,7 +153,7 @@
     padding: 0.8rem;
   }
   .custom-overlay{
-    background-color: rgba(245, 245, 245, 0.4);
+    background-color: rgb(24 24 24 / 75%);
   }
 
   .custom-overlay h1 {
