@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Dialog,
-  IconButton,
   useMediaQuery,
   useTheme,
   Box,
-  Typography
+
+  Fade
 } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useSwipeable } from 'react-swipeable';
 import logo1 from '../../Images/brands/logo1.png'
 import logo2 from '../../Images/brands/logo2.png'
@@ -28,76 +26,68 @@ import logo15 from '../../Images/brands/logo15.png'
 import logo16 from '../../Images/brands/logo16.png'
 import logo17 from '../../Images/brands/logo17.png'
 import logo18 from '../../Images/brands/logo18.png'
+
 export default function BrandsCarouselDialog({ open, onClose }) {
   const theme = useTheme();
-  // fullScreen on small viewports
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-  // Build an array of logo URLs (public folder)
-  // Adjust if your path is different
-  const logos = [logo1,logo2,logo3,logo4,logo5,logo6,logo7,logo8,logo9,logo10,logo11,logo12,logo13,logo14,logo15,logo16,logo17,logo18];
-
+  const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11, logo12, logo13, logo14, logo15, logo16, logo17, logo18];
   const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
-  // Handlers to move prev/next
   const handlePrev = useCallback(() => {
-    setIndex(prev => (prev + logos.length - 1) % logos.length);
+    setFade(false);
+    setTimeout(() => {
+      setIndex(prev => (prev + logos.length - 1) % logos.length);
+      setFade(true);
+    }, 200);
   }, [logos.length]);
 
   const handleNext = useCallback(() => {
-    setIndex(prev => (prev + 1) % logos.length);
+    setFade(false);
+    setTimeout(() => {
+      setIndex(prev => (prev + 1) % logos.length);
+      setFade(true);
+    }, 200);
   }, [logos.length]);
 
-  // Reset index when dialog closes
   useEffect(() => {
     if (!open) {
       setIndex(0);
+      return;
     }
-  }, [open]);
 
-  // Keyboard navigation: ArrowLeft / ArrowRight, Esc to close
+    const interval = setInterval(() => {
+      handleNext();
+    }, 1200); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [open, handleNext]);
+
   useEffect(() => {
     if (!open) return;
     const handleKey = e => {
-      if (e.key === 'ArrowLeft') {
-        handlePrev();
-      } else if (e.key === 'ArrowRight') {
-        handleNext();
-      } else if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'ArrowLeft') handlePrev();
+      else if (e.key === 'ArrowRight') handleNext();
+      else if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKey);
-    return () => {
-      window.removeEventListener('keydown', handleKey);
-    };
+    return () => window.removeEventListener('keydown', handleKey);
   }, [open, handlePrev, handleNext, onClose]);
 
-  // Swipe handlers for touch devices
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => {
-      handleNext();
-    },
-    onSwipedRight: () => {
-      handlePrev();
-    },
-    trackMouse: false, // set true if you want desktop mouse dragging
+    onSwipedLeft: () => handleNext(),
+    onSwipedRight: () => handlePrev(),
+    trackMouse: false,
   });
 
-  // Optional: handle image load error
   const handleImageError = () => {
     console.warn('Failed to load logo:', logos[index]);
-    // You could skip to next automatically, or show placeholder...
   };
- const handlePaperClick = (event) => {
-    // event.target is the element clicked.
-    // event.currentTarget is the Paper element.
-    // If user clicked exactly on the Paper (not a child), target===currentTarget.
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-    // Otherwise (click inside inner Box), do nothing here.
+
+  const handlePaperClick = (event) => {
+    if (event.target === event.currentTarget) onClose();
   };
+
   return (
     <Dialog
       open={open}
@@ -105,17 +95,16 @@ export default function BrandsCarouselDialog({ open, onClose }) {
       fullScreen={fullScreen}
       maxWidth="sm"
       fullWidth
-      // Make Paper (dialog background) transparent, and backdrop lightly dim:
       PaperProps={{
         sx: {
-          backgroundColor: 'transparent', // transparent so page shows behind
-          boxShadow: 'none',              // remove default white shadow
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
         },
-          onClick: handlePaperClick,
+        onClick: handlePaperClick,
       }}
       BackdropProps={{
         sx: {
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent black, adjust alpha as desired
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
         }
       }}
       aria-labelledby="brands-carousel-dialog"
@@ -124,85 +113,32 @@ export default function BrandsCarouselDialog({ open, onClose }) {
         {...swipeHandlers}
         sx={{
           position: 'relative',
-          // Use a semi-transparent panel behind the image so the logo remains legible
-          // You can adjust this to more opaque if logos need more contrast.
-          bgcolor: 'rgba(255,255,255,255)', 
+          bgcolor: 'rgba(255,255,255,1)',
           borderRadius: 2,
           p: 2,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          // On mobile fullScreen, center vertically but allow some margin so page border shows:
           mx: fullScreen ? 1 : 'auto',
           my: fullScreen ? 2 : 4,
           minHeight: fullScreen ? '50vh' : 'auto',
           overflow: 'hidden',
         }}
       >
-        {/* Left arrow */}
-        <IconButton
-          onClick={handlePrev}
-          aria-label="Previous logo"
-          sx={{
-            position: 'absolute',
-            left: 8,
-            top: '50%',
-            transform: 'translateY(-50%)',
-            bgcolor: 'rgba(0,0,0,0.3)',
-            color: 'white',
-            '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
-            zIndex: 10,
-          }}
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-
-        {/* Logo image */}
-        <Box
-          component="img"
-          src={logos[index]}
-          alt={`Logo ${index + 1}`}
-          sx={{
-            maxWidth: '80%',
-            maxHeight: fullScreen ? '40vh' : '60vh',
-            objectFit: 'contain',
-            mx: 'auto',
-          }}
-          onError={handleImageError}
-        />
-
-        {/* Right arrow */}
-        <IconButton
-          onClick={handleNext}
-          aria-label="Next logo"
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: '50%',
-            transform: 'translateY(-50%)',
-            bgcolor: 'rgba(0,0,0,0.3)',
-            color: 'white',
-            '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
-            zIndex: 10,
-          }}
-        >
-          <ArrowForwardIosIcon />
-        </IconButton>
-
-        {/* Slide indicator */}
-        <Typography
-          variant="body2"
-          sx={{
-            position: 'absolute',
-            bottom: 8,
-            color: 'white',
-            bgcolor: 'rgba(0,0,0,0.4)',
-            px: 1,
-            borderRadius: 1,
-          }}
-        >
-          {index + 1} / {logos.length}
-        </Typography>
+        <Fade in={fade} timeout={500} key={index}>
+          <Box
+            component="img"
+            src={logos[index]}
+            alt={`Logo ${index + 1}`}
+            sx={{
+              maxWidth: '80%',
+              maxHeight: fullScreen ? '40vh' : '60vh',
+              objectFit: 'contain',
+              mx: 'auto',
+            }}
+            onError={handleImageError}
+          />
+        </Fade>
       </Box>
     </Dialog>
   );
