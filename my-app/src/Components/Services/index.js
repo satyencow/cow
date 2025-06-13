@@ -12,7 +12,7 @@ const ServicePage = () => {
       <div className="service-overlay">
         <div className="service-content">
           <div className="service-column">
-            <h2>ADVERTISING:</h2>
+            <h2>ADVERTISING</h2>
             <p>Strategy</p>
             <p>Brand positioning</p>
             <p>Mainline communication</p>
@@ -25,7 +25,7 @@ const ServicePage = () => {
             <p>Brand identity</p>
           </div>
           <div className="service-column">
-            <h2>DIGITAL:</h2>
+            <h2>DIGITAL</h2>
             <p>Digital marketing</p>
             <p>Social media marketing</p>
             <p>Content creation</p>
@@ -34,7 +34,7 @@ const ServicePage = () => {
 
           </div>
           <div className="service-column">
-            <h2>Experiential design:</h2>
+            <h2>EXPERIENTIAL</h2>
             <p>Activation</p>
             <p>Retail space</p>
           </div>
