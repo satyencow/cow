@@ -8,6 +8,11 @@ import {
   Fade
 } from '@mui/material';
 import { useSwipeable } from 'react-swipeable';
+import Covie from '../../Images/brands/Covie logo-01.jpg'
+import Hyffa from '../../Images/brands/Hyffa logo-01.jpg'
+import Iskon from '../../Images/brands/ISKCON logo-01.jpg'
+import Sanjay from '../../Images/brands/Sanjay Ghodawat consumer logo-01.jpg'
+import Vip from '../../Images/brands/VIP logo-01.jpg'
 import logo1 from '../../Images/brands/logo1.png'
 import logo2 from '../../Images/brands/logo2.png'
 import logo3 from '../../Images/brands/logo3.png'
@@ -30,7 +35,7 @@ import logo18 from '../../Images/brands/logo18.png'
 export default function BrandsCarouselDialog({ open, onClose }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11, logo12, logo13, logo14, logo15, logo16, logo17, logo18];
+  const logos = [Iskon,Sanjay,Vip, Hyffa, Covie, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11, logo12, logo13, logo14, logo15, logo16, logo17, logo18];
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
