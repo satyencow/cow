@@ -35,7 +35,7 @@ import logo18 from '../../Images/brands/logo18.png'
 export default function BrandsCarouselDialog({ open, onClose }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const logos = [Iskon,Sanjay,Vip, Hyffa, Covie, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11, logo12, logo13, logo14, logo15, logo16, logo17, logo18];
+  const logos = [ logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10, logo11, logo12, logo13, logo14, logo15, logo16, logo17, logo18,Iskon,Sanjay,Vip, Hyffa, Covie];
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
