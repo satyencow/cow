@@ -44,7 +44,7 @@ export default function BrandsCarouselDialog({ open, onClose }) {
     setTimeout(() => {
       setIndex(prev => (prev + logos.length - 1) % logos.length);
       setFade(true);
-    }, 200);
+    }, 400);
   }, [logos.length]);
 
   const handleNext = useCallback(() => {
@@ -52,7 +52,7 @@ export default function BrandsCarouselDialog({ open, onClose }) {
     setTimeout(() => {
       setIndex(prev => (prev + 1) % logos.length);
       setFade(true);
-    }, 200);
+    }, 400);
   }, [logos.length]);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function BrandsCarouselDialog({ open, onClose }) {
 
     const interval = setInterval(() => {
       handleNext();
-    }, 1200); // Change slide every 3 seconds
+    }, 2000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
   }, [open, handleNext]);
