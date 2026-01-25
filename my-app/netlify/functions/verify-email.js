@@ -1,7 +1,5 @@
 import { nanoid } from "nanoid";
-
-// Temporary in-memory store for pending submissions
-let pendingSubmissions = {};
+import { pendingSubmissions } from "./pendingStore.js";
 
 // Simple rate limiting store
 let recentIPs = {};
@@ -67,9 +65,16 @@ export async function handler(event) {
 
     // 4️⃣ Generate verification token
     const token = nanoid(32);
-    pendingSubmissions[token] = { user_name, user_email, phone, topic, message };
+    pendingSubmissions[token] = {
+      user_name,
+      user_email,
+      phone,
+      topic,
+      message,
+      createdAt: Date.now(),
+    };
 
-    // 5️⃣ Send verification email to the user
+    // 5️⃣ Send verification email
     await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -83,7 +88,7 @@ export async function handler(event) {
         html: `
           <p>Hello ${user_name},</p>
           <p>Click the link below to verify your submission:</p>
-          <a href="https://cowtheagency.in/functions/verify-email?token=${token}">Verify Submission</a>
+          <a href="https://cowtheagency.in/.netlify/functions/verify-email?token=${token}">Verify Submission</a>
           <p>If you didn't submit this, ignore this email.</p>
         `,
       }),
