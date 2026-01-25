@@ -1,12 +1,16 @@
 import React, { useState, useRef } from 'react';
 import './styles.css'; // Import your styles
+import { Turnstile } from '@marsidev/react-turnstile'
+
 
 const ContactUs = () => {
   const form = useRef()
-  
+  const [token, setToken] = useState(null);
+
   const [formData, setFormData] = useState({
     user_name: "",
     user_email: "",
+    turnstileToken:"",
     phone: "",
     topic: "Topic",
     message: "",
@@ -18,12 +22,17 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+  
+   if (!token) {
+    alert("Please verify captcha");
+    return;
+  }
+      
   
     try {
       const response = await fetch('/.netlify/functions/send-email', {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify({turnstileToken:token,formData}),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -39,6 +48,8 @@ const ContactUs = () => {
           phone: "",
           topic: "Topic",
           message: "",
+          turnstileToken:""
+          
         });
       } else {
         alert(`Error: ${result.error}`);
@@ -46,7 +57,8 @@ const ContactUs = () => {
     } catch (error) {
       console.error('Failed to send email:', error);
       alert('Error sending email. Please try again later.');
-    }
+    
+  }
   };
 
   return (
@@ -67,6 +79,10 @@ const ContactUs = () => {
           </select>
         </div>
         <textarea name="message" placeholder="Message" value={formData.message} onChange={handleChange} required />
+              <Turnstile siteKey={ProcessingInstruction.env.REACT_APP_TURNSTILE_SITE_KEY}   onSuccess={(token) => setToken(token)}
+/><input type="text" name="hp_field" style={{ display: "none" }} onChange={handleChange} />
+
+
         <button type="submit">Send</button>
       </form>
       <div className="contact-info">
